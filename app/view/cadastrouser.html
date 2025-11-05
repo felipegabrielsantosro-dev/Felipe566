@@ -1,0 +1,86 @@
+{% extends "main.html" %}
+{% block main %}
+
+
+<h3>Cadastro de Usuário</h3>
+
+<div class="form-card">
+  <form id="signupForm" novalidate>
+    <div class="form-group">
+      <input type="text" id="firstName" placeholder="Nome" required>
+      <input type="text" id="lastName" placeholder="Sobrenome" required>
+    </div>
+    <div class="form-group">
+      <input type="text" id="username" placeholder="Nome de usuário" required>
+      <input type="email" id="email" placeholder="E-mail" required>
+    </div>
+    <div class="form-group">
+      <input type="tel" id="phone" placeholder="Telefone" required>
+      <input type="text" id="city" placeholder="Cidade" required>
+    </div>
+    <div class="form-group">
+      <select id="state" required>
+        <option value="">Escolha o estado</option>
+        <option value="SP">São Paulo</option>
+        <option value="RJ">Rio de Janeiro</option>
+        <option value="MG">Minas Gerais</option>
+        <option value="RS">Rio Grande do Sul</option>
+        <!-- Adicione os demais estados aqui -->
+      </select>
+      <input type="text" id="zip" placeholder="CEP" required>
+    </div>
+    <div class="form-group">
+      <input type="password" id="password" placeholder="Senha" required>
+      <div class="strength-bar"><div id="strengthIndicator"></div></div>
+    </div>
+    <div class="form-group">
+      <button type="submit">Cadastrar</button>
+    </div>
+  </form>
+
+  <h4>Lista de Usuários</h4>
+  <table id="userTable">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Usuário</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th>CEP</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<style>
+body { font-family: 'Segoe UI', sans-serif; background: #f0f0f0; display: flex; justify-content: center; padding: 50px; }
+.form-card { background: #fff; padding: 25px; border-radius: 15px; width: 800px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.form-group { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+input, select, button { padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
+button { background: #e10600; color: #fff; border: none; cursor: pointer; }
+button:hover { background: #a80000; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 8px; border: 1px solid #ccc; text-align: center; }
+.strength-bar { height: 6px; background: #ddd; border-radius: 4px; margin-top: 5px; }
+.strength-bar div { height: 100%; width: 0%; border-radius: 4px; transition: width 0.3s; }
+.success-message { display: none; color: green; margin-top: 10px; font-weight: bold; }
+</style>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

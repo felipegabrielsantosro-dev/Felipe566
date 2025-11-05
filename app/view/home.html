@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listagem de Usuários - UrubuTech</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --flamengo-red: #e10600;
+      --flamengo-black: #0a0a0a;
+      --flamengo-gray: #f7f7f7;
+      --flamengo-hover: #b00000;
+    }
+
+    body {
+      background-color: var(--flamengo-gray);
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding-top: 90px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(135deg, var(--flamengo-red), var(--flamengo-black));
+      color: white;
+      text-align: center;
+      padding: 18px 0;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .navbar {
+      background-color: var(--flamengo-black);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: var(--flamengo-red) !important;
+    }
+
+    main {
+      padding: 40px 20px 100px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--flamengo-black);
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .table-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 25px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    thead th {
+      background-color: var(--flamengo-red);
+      color: white;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      padding: 12px;
+    }
+
+    tbody td {
+      padding: 12px;
+      vertical-align: middle;
+    }
+
+    tbody tr:hover {
+      background-color: #fff2f2;
+    }
+
+    .btn-add {
+      background-color: var(--flamengo-red);
+      color: #fff;
+      border: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-add:hover {
+      background-color: var(--flamengo-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-edit {
+      background-color: #198754;
+      color: white;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-edit:hover {
+      background-color: #157347;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-delete:hover {
+      background-color: #b02a37;
+    }
+
+    footer {
+      background-color: var(--flamengo-black);
+      color: #f8f9fa;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--flamengo-red);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><i class="bi bi-fire me-2"></i>UrubuTech - Usuários</h1>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="bi bi-grid-1x2-fill"></i> Menu</a>
+  </div>
+</nav>
+
+<main class="container">
+  <h2><i class="bi bi-person-lines-fill text-danger"></i> Listagem de Usuários</h2>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#modalUsuario">
+      <i class="bi bi-plus-circle me-1"></i> Adicionar Usuário
+    </button>
+  </div>
+
+  <div class="table-card">
+    <table class="table table-hover align-middle" id="tabelaUsuarios">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>E-mail</th>
+          <th>Estado</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<!-- Modal Adicionar/Editar -->
+<div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="formUsuario">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalUsuarioLabel">Adicionar Usuário</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="usuarioId">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nome" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="nome" required>
+            </div>
+            <div class="col-md-6">
+              <label for="sobrenome" class="form-label">Sobrenome</label>
+              <input type="text" class="form-control" id="sobrenome" required>
+            </div>
+            <div class="col-12">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="col-md-6">
+              <label for="estado" class="form-label">Estado</label>
+              <select id="estado" class="form-select" required>
+                <option value="">Selecione...</option>
+                <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                <option>SP</option><option>SE</option><option>TO</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="status" class="form-label">Status</label>
+              <select id="status" class="form-select">
+                <option>Ativo</option>
+                <option>Inativo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Excluir -->
+<div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="modalExcluirLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="modalExcluirLabel">Confirmar Exclusão</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Deseja realmente excluir este usuário?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmExcluir">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 UrubuTech. Todos os direitos reservados.
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let usuarioSelecionado = null;
+
+function renderTabela() {
+  const tbody = document.querySelector("#tabelaUsuarios tbody");
+  tbody.innerHTML = "";
+  usuarios.forEach((u, i) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${i+1}</td>
+      <td>${u.nome}</td>
+      <td>${u.sobrenome}</td>
+      <td>${u.email}</td>
+      <td>${u.estado}</td>
+      <td>${u.status}</td>
+      <td>
+        <button class="btn btn-edit btn-sm me-1" onclick="editarUsuario(${i})"><i class="bi bi-pencil-square"></i></button>
+        <button class="btn btn-delete btn-sm" onclick="abrirExcluir(${i})"><i class="bi bi-trash3"></i></button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+}
+
+function abrirExcluir(index) {
+  usuarioSelecionado = index;
+  new bootstrap.Modal(document.getElementById('modalExcluir')).show();
+}
+
+document.getElementById("confirmExcluir").addEventListener("click", () => {
+  if (usuarioSelecionado !== null) {
+    usuarios.splice(usuarioSelecionado, 1);
+    renderTabela();
+    usuarioSelecionado = null;
+    bootstrap.Modal.getInstance(document.getElementById('modalExcluir')).hide();
+  }
+});
+
+document.getElementById("formUsuario").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const nome = document.getElementById("nome").value;
+  const sobrenome = document.getElementById("sobrenome").value;
+  const email = document.getElementById("email").value;
+  const estado = document.getElementById("estado").value;
+  const status = document.getElementById("status").value;
+
+  if (document.getElementById("usuarioId").value) {
+    // Editar
+    usuarios[document.getElementById("usuarioId").value] = { nome, sobrenome, email, estado, status };
+  } else {
+    // Adicionar
+    usuarios.push({ nome, sobrenome, email, estado, status });
+  }
+
+  renderTabela();
+  document.getElementById("formUsuario").reset();
+  document.getElementById("usuarioId").value = "";
+  bootstrap.Modal.getInstance(document.getElementById('modalUsuario')).hide();
+});
+
+function editarUsuario(index) {
+  const u = usuarios[index];
+  document.getElementById("usuarioId").value = index;
+  document.getElementById("nome").value = u.nome;
+  document.getElementById("sobrenome").value = u.sobrenome;
+  document.getElementById("email").value = u.email;
+  document.getElementById("estado").value = u.estado;
+  document.getElementById("status").value = u.status;
+  new bootstrap.Modal(document.getElementById('modalUsuario')).show();
+}
+
+renderTabela();
+</script>
+</body>
+</html>
