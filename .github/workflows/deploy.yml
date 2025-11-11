@@ -19,8 +19,8 @@ jobs:
             target: "/home/Felipe" 
 
         - name: "Build da aplicação"
-            uses: appleboy/ssh-action@v1
-            with:
+          uses: appleboy/ssh-action@v1
+          with:
               host: "82.25.74.36"
               username: "root"
               key: ${{ secrets.SERVER_SSH_KEY }}
