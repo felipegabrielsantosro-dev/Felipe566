@@ -16,7 +16,7 @@ jobs:
           username: "root"
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "."
-          target: "/home/Felipe"
+          target: "/home/felipe"
         
       - name: "Build da aplicação"
         uses: appleboy/ssh-action@v1
@@ -25,6 +25,6 @@ jobs:
           username: "root"
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /home/Felipe
+            cd /home/felipe
             composer install --no-dev --no-progress -a
             chown -R www-data:www-data .
