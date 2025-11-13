@@ -1,31 +1,56 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">(BeteWere)</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Marca / Logo -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/home">
+      <i class="bi bi-fire text-danger me-2"></i> BeteWere
+    </a>
+
+    <!-- Botão responsivo (mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegação">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Itens do menu -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home">Iniciar</a>
+          <a class="nav-link active" aria-current="page" href="/home">
+            <i class="bi bi-house-door-fill me-1"></i> Início
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#">
+            <i class="bi bi-link-45deg me-1"></i> Link
+          </a>
         </li>
+
+        <!-- Dropdown Cadastros -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Cadastros
-        </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/cliente/lista">Cliente</a></li>
-                    <li><a class="dropdown-item" href="/fornecedor/lista">Fornecedor</a></li>
-                    <li><a class="dropdown-item" href="/usuario/cadastro">Usuario</a></li>
-                    <li><hr class="dropdown-divider">Usuario</li> 
-                    <li><a class="dropdown-item" href="#">Você quer outra coisa aqui?</a></li>
-                </ul>
-             </li>
-          </li>
-       </ul>
-     </div>
-   </div>
+          <a class="nav-link dropdown-toggle" href="#" id="cadastrosDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-lines-fill me-1"></i> Cadastros
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="cadastrosDropdown">
+            <li><a class="dropdown-item" href="/cliente/lista"><i class="bi bi-person-fill me-2"></i>Cliente</a></li>
+            <li><a class="dropdown-item" href="/fornecedor/lista"><i class="bi bi-truck me-2"></i>Fornecedor</a></li>
+            <li><a class="dropdown-item" href="/usuario/cadastro"><i class="bi bi-people-fill me-2"></i>Usuário</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-muted" href="#"><i class="bi bi-plus-circle me-2"></i>Adicionar novo módulo...</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!-- Área à direita (exemplo: usuário logado ou busca futura) -->
+      <div class="d-flex align-items-center">
+        <span class="text-white-50 small me-3">Olá, <strong>Admin</strong></span>
+        <button class="btn btn-outline-danger btn-sm">
+          <i class="bi bi-box-arrow-right"></i> Sair
+        </button>
+      </div>
+    </div>
+  </div>
 </nav>
